@@ -27,14 +27,10 @@ export class AppComponent implements OnInit {
     this.combinationPhoneList = [];
     this.pageList = [];
     this.displayList = [];
-
   }
 
   ngOnInit() {
   }
-
-
-
 
   onClickSubmit() {
     let phone: phoneObjectModel;

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
+// not used - however if needed - can read from local file
 @Injectable({
   providedIn: 'root'
 })
