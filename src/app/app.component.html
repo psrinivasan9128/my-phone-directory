@@ -1,0 +1,42 @@
+<div>
+  <form #phoneForm="ngForm" (ngSubmit)="onClickSubmit()">
+    <div>
+      <label for="telNo">Enter a telephone number (in the form xxx-xxx-xxxx): </label>
+      <input id="telNo" name="telNo" type="tel" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" [(ngModel)]="newPhone" />
+      <span class="validity"></span>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!phoneForm.valid">Submit</button>
+      <button type="button" (click)="clear()">Clear</button>
+    </div>
+  </form>
+  <hr />
+
+  <div>
+    <label> Display combinations</label>
+    <div style="height: 10rem;border: 1px solid black;overflow: auto; ">
+      <table>
+        <thead>
+          <tr>
+            <td>phone combination</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of displayList">
+            <td>{{item.phoneNumber}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+<hr>
+
+<div style="height: 3rem;">
+  <select name="pages" id="pages" (change)="changePage($event)">
+    <option *ngFor="let val of pageList" value={{val}}>{{val}}</option>
+  </select>
+
+</div>
