@@ -40,3 +40,11 @@
   </select>
 
 </div>
+
+<div style="height: 2rem;">
+  <label for="pageview"> num of records per page</label>
+  <input type="number" [(ngModel)]="pagesPerView" />
+</div>
+<div>
+  <button type="button" (click)="refresh()">Change </button>
+</div>

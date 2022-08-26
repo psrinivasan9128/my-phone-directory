@@ -31,17 +31,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadJson();
   }
 
 
-  //// this is just a sample how to read data from a remote service
-  // it is not really used here 
-  loadJson() {
-    this._filereader.getJSON().subscribe(data => {
-      this.listPhone = data;
-    });
-  }
+
 
   onClickSubmit() {
     let phone: phoneObjectModel;
@@ -58,7 +51,7 @@ export class AppComponent implements OnInit {
     let combinationPhone: phoneObjectModel;
     let alphabet = 'abcdefghijklmnopqrstuvwxyz';
     this.listPhone.forEach(element => {
-      for (var i = 0; i <= alphabet.length; i++) {
+      for (var i = 0; i < alphabet.length; i++) {
         combinationPhone = new phoneObjectModel(element.phoneNumber + "-" + alphabet.charAt(i));
         this.combinationPhoneList.push(combinationPhone);
       }
@@ -68,10 +61,11 @@ export class AppComponent implements OnInit {
   }
 
   calculatePaging() {
+    this.pageList = [];
+    this.totalNumberOfPages = 0;
+
     if (this.combinationPhoneList.length > 1) {
-      if (this.combinationPhoneList.length % this.pagesPerView !== 0) {
-        this.totalNumberOfPages = Math.ceil(this.combinationPhoneList.length / this.pagesPerView);
-      }
+      this.totalNumberOfPages = Math.ceil(this.combinationPhoneList.length / this.pagesPerView);
     } else if (this.combinationPhoneList.length === 1) {
       this.totalNumberOfPages = 1;
     }
@@ -98,6 +92,12 @@ export class AppComponent implements OnInit {
 
   changePage(inpVal: any) {
     this.currentPageNumber = parseInt(inpVal.target.value);
+    this.setDisplayList();
+  }
+
+  refresh() {
+    this.currentPageNumber = 1;
+    this.calculatePaging();
     this.setDisplayList();
   }
 
